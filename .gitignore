@@ -1,0 +1,7 @@
+__pycache__ 
+*.docx 
+*.exe 
+.vscode
+*.zip 
+venv/
+package/
