@@ -1,6 +1,7 @@
 from undirected_graph import UndirectedGraph
 from directed_graph import DirectedGraph
 from weighted_graph import WeightedGraph
+from visualizer_tk import GraphVisualizer
 
 if __name__ == "__main__":
     print("Undirected graph:")
@@ -43,3 +44,9 @@ if __name__ == "__main__":
     random_weighted_graph = WeightedGraph(5)
     random_weighted_graph.generate_random_weighted_graph(0.5, (1, 10))
     random_weighted_graph.display_matrix() 
+
+    visualizer = GraphVisualizer(random_weighted_graph)
+    visualizer.visualize()
+    
+    visualizer = GraphVisualizer(random_graph)
+    visualizer.visualize()
