@@ -45,6 +45,9 @@ if __name__ == "__main__":
     random_weighted_graph.generate_random_weighted_graph(0.5, (1, 10))
     random_weighted_graph.display_matrix() 
 
+    visualizer = GraphVisualizer(directed_graph)
+    visualizer.visualize() 
+
     visualizer = GraphVisualizer(random_weighted_graph)
     visualizer.visualize()
     
