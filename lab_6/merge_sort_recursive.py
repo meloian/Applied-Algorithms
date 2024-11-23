@@ -28,8 +28,10 @@ def merge_sort_recursive(arr, metrics=None):
             # merge the halves
             i = j = k = 0
             
-            while i < len(L) and j < len(R):  # compare and merge elements
-                metrics.comparisons += 1
+            while i < len(L) and j < len(R):
+                metrics.comparisons += 1  # сount comparisons
+                if metrics.store_sequence and metrics.comparison_sequence is not None:
+                    metrics.comparison_sequence.append((L[i], R[j]))  # track comparison details 
                     
                 if L[i] <= R[j]:
                     arr[k] = L[i]
