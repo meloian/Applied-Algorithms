@@ -19,12 +19,13 @@ def plot_metrics(df):
 
     for metric in metrics:
         plt.figure(figsize=(12, 6))
-        sns.barplot(
+        sns.lineplot(
             x='Data Size',
             y=metric,
             hue='Algorithm',
             data=df,
-            errorbar=None 
+            marker='o',
+            errorbar= None 
         )
         plt.title(f'{metric} by Algorithm and Data Size')
         plt.xlabel('Data Size')

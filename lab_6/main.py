@@ -10,7 +10,7 @@ def main():
     import time
     import tracemalloc
 
-    data_sizes = [1000, 5000, 10000, 15000]
+    data_sizes = [1000, 5000, 10000, 20000, 50000, 100000]
     data_types = ['random', 'sorted', 'reverse', 'nearly_sorted', 'few_unique']
     sorting_algorithms = {
         'Recursive Merge Sort': merge_sort_recursive,
@@ -39,6 +39,7 @@ def main():
             for algo_name, algo_func in sorting_algorithms.items():
                 metrics = PerformanceMetrics(store_sequence=False)
                 tracemalloc.start()
+                
                 start_time = time.perf_counter()
 
                 if algo_name == 'Linked List Merge Sort':
@@ -49,9 +50,8 @@ def main():
                     data_copy = data.copy()
                     sorted_data, metrics = algo_func(data_copy, metrics)
 
-                metrics.time_elapsed = time.perf_counter() - start_time
-                current, peak = tracemalloc.get_traced_memory()
-                metrics.memory_usage = peak
+                metrics.time_elapsed = time.perf_counter() - start_time               
+                metrics.measure_memory() 
                 tracemalloc.stop()
 
                 if sorted(sorted_data) != sorted_data:

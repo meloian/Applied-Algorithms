@@ -21,7 +21,7 @@ def insertion_sort(arr, left, right, metrics):
         arr[j + 1] = key  # insert in the correct position
         metrics.copy_operations += 1
 
-def merge_sort_optimized(arr, metrics=None, cutoff=64):
+def merge_sort_optimized(arr, metrics=None, cutoff=15):
     
     if metrics is None:
         metrics = PerformanceMetrics()
