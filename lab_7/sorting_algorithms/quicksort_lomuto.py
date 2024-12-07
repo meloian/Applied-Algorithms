@@ -16,13 +16,16 @@ class QuickSortLomuto:
         return arr
 
     def _quicksort(self, arr, low, high, depth):
+        # base condition for recursion
         if low < high:
             self.max_recursion_depth = max(self.max_recursion_depth, depth)
+            # partition and sort the array
             p = self._partition(arr, low, high)
             self._quicksort(arr, low, p - 1, depth + 1)
             self._quicksort(arr, p + 1, high, depth + 1)
 
     def _choose_pivot(self, arr, low, high):
+        # pivot index based on selected strategy
         if self.pivot_type == 'last':
             return high
         elif self.pivot_type == 'random':
@@ -35,6 +38,7 @@ class QuickSortLomuto:
         return high
 
     def _partition(self, arr, low, high):
+        # move the pivot to the end
         pivot_index = self._choose_pivot(arr, low, high)
         swap(arr, pivot_index, high)
         self.swaps += 1
@@ -47,6 +51,7 @@ class QuickSortLomuto:
                 i += 1
                 swap(arr, i, j)
                 self.swaps += 1
+        # place the pivot in its correct position
         swap(arr, i + 1, high)
         self.swaps += 1
         return i + 1

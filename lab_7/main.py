@@ -15,11 +15,11 @@ import pandas as pd
 
 def main():
 
-    recursion_limit = 100000
+    recursion_limit = 21000
     sys.setrecursionlimit(recursion_limit)
     os.makedirs('results/comparison_plots', exist_ok=True)
 
-    sizes = [1000, 5000, 10000, 20000, 50000]
+    sizes = [1000, 5000, 10000, 15000, 20000]
 
     data_generators = {
         'identical_elements': generate_identical_elements,

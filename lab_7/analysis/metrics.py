@@ -5,19 +5,20 @@ import threading
 
 def monitor_memory(process, interval, stop_event, memory_usage_list):
     while not stop_event.is_set():
-        mem = process.memory_info().rss
+        mem = process.memory_info().rss # get current memory usage (bytes)
         memory_usage_list.append(mem)
         time.sleep(interval)
 
 def collect_metrics(algorithm, data):
 
-    process = psutil.Process(os.getpid())
+    process = psutil.Process(os.getpid()) # get current process
     
     data_copy = data.copy()
 
     memory_usage_list = []
-    stop_event = threading.Event()
+    stop_event = threading.Event() # event to end monitoring
 
+    # start thread to monitor memory usage
     monitor_thread = threading.Thread(target=monitor_memory, args=(process, 0.001, stop_event, memory_usage_list))
     monitor_thread.start()
 
@@ -31,6 +32,7 @@ def collect_metrics(algorithm, data):
         
         is_correct = data_copy == sorted(data_copy)
     except RecursionError:
+        # handle recursion depth error.
         stop_event.set()
         monitor_thread.join()
         is_correct = False
